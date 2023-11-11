@@ -8,17 +8,8 @@ import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Rout
 })
 export class AppComponent {
   title = 'news-cracker';
-  loading = true;
 
   constructor(private router: Router) {
-    this.loading = true;
-    router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        this.loading = true;
-      }
-      if (event instanceof NavigationEnd || event instanceof NavigationError || event instanceof NavigationCancel) {
-        this.loading = false;
-      }
-    });
+    //
   }
 }
