@@ -14,6 +14,12 @@ export type News = {
   summary: string
 }
 
+export type Configuration = {
+  news_sources: string[]
+  keywords: string[],
+  industries: string[]
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -85,6 +91,10 @@ export class BackendService {
         resolve({message: 'Dunno, ask something else!'});
       }, 3000);
     });
+  }
+
+  setConfiguration(configuration: Configuration): Promise<void> {
+    return this.setMockNews();
   }
 
   setMockNews(): Promise<void> {

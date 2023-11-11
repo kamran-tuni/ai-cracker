@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BackendService } from '../../services/backend.service';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'c-config-dialog',
@@ -8,8 +9,17 @@ import { BackendService } from '../../services/backend.service';
   styleUrls: ['./config-dialog.component.less'],
 })
 export class ConfigDialogComponent implements OnInit {
+  tabOneCompleted = true;
+  tabTwoCompleted = false;
+  
   keywords = ['aluminium'];
   keyword: string = '';
+
+  industries = ['construction', 'automotive'];
+  industry: string = '';
+
+  sources = ['https://news.metal.com/'];
+  source: string = '';
   
   constructor(
     private backend: BackendService,
@@ -23,23 +33,36 @@ export class ConfigDialogComponent implements OnInit {
   }
 
   onSave(): void {
-    this.backend.setMockNews(); // TODO remove
+    // "news_sources": [
+    //   "string"
+    // ],
+    // "keywords": [
+    //   "string"
+    // ],
+    // "industries": [
+    //   "string"
+    // ],
+    this.backend.setConfiguration({
+      news_sources: this.sources,
+      keywords: this.keywords,
+      industries: this.industries
+    });
     this.dialogRef.close();
   }
 
-  addKeyword(): void {
-    if (this.keyword.length > 0) {
-      if (!this.keywords.includes(this.keyword)) {
-        this.keywords.push(this.keyword);
+  add(list: string[], key: string): void {
+    if (list.length > 0) {
+      if (!list.includes(key)) {
+        list.push(key);
       }
-      this.keyword = '';
+      key = '';
     }
   }
 
-  remove(key: string): void {
-    const index = this.keywords.indexOf(key);
+  remove(list: string[], key: string): void {
+    const index = list.indexOf(key);
     if (index >= 0) {
-      this.keywords.splice(index, 1);
+      list.splice(index, 1);
     }
   }
 }

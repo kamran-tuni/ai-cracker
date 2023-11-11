@@ -20,6 +20,9 @@ import { ChatComponent } from './components/chat/chat.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfigDialogComponent } from './components/config-dialog/config-dialog.component';
 import { MatIconModule } from '@angular/material/icon'
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -39,12 +42,14 @@ import { MatIconModule } from '@angular/material/icon'
     MatDividerModule,
     MatDialogModule,
     MatExpansionModule,
+    MatStepperModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatInputModule,
     HttpClientModule,
     NgbModule,
     MatIconModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
