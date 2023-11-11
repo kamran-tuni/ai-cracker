@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
   <c-chat-element
     name="You"
     message="Hello how is it going?">
@@ -7,20 +7,25 @@
       name="ChatOTK"
       message="Not bad, you?">
   </c-chat-element>
-</div>
-<!-- <div class="col-xs-12">
-  <cdk-virtual-scroll-viewport class="example-viewport" itemSize="60">
+</div> -->
+<div class="chat-input">
+  <cdk-virtual-scroll-viewport class="example-viewport col-12" itemSize="60">
     <dl class="example-dl">
-      <ng-container *cdkVirtualFor="let state of states">
+      <ng-container *cdkVirtualFor="let state of items">
         <dt class="example-dt">{{state.name}}</dt>
         <dd class="example-dd">{{state.capital}}</dd>
       </ng-container>
     </dl>
   </cdk-virtual-scroll-viewport>
-</div> -->
-<form>
-  <mat-form-field class="chat-input">
-    <!-- <mat-label>Chat</mat-label> -->
-    <input matInput placeholder="Message ChatOTK...">
-  </mat-form-field>
-</form>
+  <!-- <cdk-virtual-scroll-viewport itemSize="50" minBufferPx="200" maxBufferPx="400"
+                              class="example-viewport">
+    <div *cdkVirtualFor="let item of items" class="example-item">{{item}}</div>
+  </cdk-virtual-scroll-viewport> -->
+
+  <form>
+    <mat-form-field class="chat-input">
+      <!-- <mat-label>Chat</mat-label> -->
+      <input matInput placeholder="Message ChatOTK...">
+    </mat-form-field>
+  </form>
+</div>
