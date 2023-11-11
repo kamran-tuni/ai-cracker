@@ -12,7 +12,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
-import { BuComponent } from './components/bu/bu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { ChatComponent } from './components/chat/chat.component';
@@ -22,7 +21,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
-    BuComponent,
     NewsFeedComponent,
     ChatComponent,
     ChatElementComponent
