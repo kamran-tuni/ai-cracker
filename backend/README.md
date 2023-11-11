@@ -2,6 +2,14 @@
 
 This tool utilizes generative Artificial Intelligence in a sustainable manner to collect and summarize real time insights to help drive business decisions.
 
+## Clone repo and move to backend dir
+
+```bash
+git clone https://github.com/kamran-tuni/ai-cracker.git
+cd backend
+```
+
+
 ## Environment Setup
 
 *Prerequisites:* Python 3.9 & Pip
