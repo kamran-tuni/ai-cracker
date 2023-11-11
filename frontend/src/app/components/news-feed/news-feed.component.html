@@ -1,0 +1,27 @@
+<mat-progress-bar
+  *ngIf="loading"
+  mode="query"></mat-progress-bar>
+<mat-accordion class="news">
+  <ng-container *ngFor="let n of news">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{n.header}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{n.source}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>{{n.summary}}</p>
+    </mat-expansion-panel>
+  </ng-container>
+</mat-accordion>
+
+<!-- <ng-container
+  *ngFor="let n of news">
+  <c-news
+    [source]="n.source"
+    [header]="n.header"
+    [summary]="n.summary">
+  </c-news>
+</ng-container> -->

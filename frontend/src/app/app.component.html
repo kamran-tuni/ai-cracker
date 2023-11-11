@@ -1,0 +1,20 @@
+
+<div class="" role="main">
+  <!-- <mat-spinner *ngIf="loading"></mat-spinner> -->
+  
+  <mat-grid-list cols="3"><!-- rowHeight="100%"-->
+    <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="1">
+      <c-chat></c-chat>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="1"
+      [rowspan]="1">
+      <c-news-feed></c-news-feed>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <!-- <c-bu></c-bu> -->
+</div>
+
+<router-outlet></router-outlet>
