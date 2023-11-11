@@ -94,7 +94,28 @@ export class BackendService {
   }
 
   setConfiguration(configuration: Configuration): Promise<void> {
+    this.startChat();
     return this.setMockNews();
+  }
+
+  private startChat(): void {
+    this._conversation.next([{
+      name: 'ChatOTK',
+      message: "",
+      loading: true
+    }]);
+    new Promise(resolve => {
+      return setTimeout(() => {
+        const conversation = this._conversation.getValue();
+        conversation.pop();
+        conversation.push({
+          name: 'ChatOTK',
+          message: 'Check the news on the right and feel free to ask any clarifying questions!',
+          loading: false
+        });
+        this._conversation.next(conversation);
+      }, 1500);
+    });
   }
 
   setMockNews(): Promise<void> {
