@@ -2,13 +2,60 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, filter, firstValueFrom, Observable, of, Subject, tap } from 'rxjs';
 
+export type Conversation = {
+  name: string
+  message: string
+  loading: boolean
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class BackendService {
+  private _conversation = new BehaviorSubject<Conversation[]>([]);
+  public readonly conversation$ = this._conversation.asObservable();
 
   constructor(private http: HttpClient) {
     //
+  }
+
+  sendMessage(message: string): Promise<void> {
+    const converstion = this._conversation.getValue().map(c => {
+      if (c.loading) {
+        c.message = "-CANCELED-";
+        c.loading = false;
+      }
+      return c;
+    });
+    converstion.push({
+      name: 'You',
+      message: message,
+      loading: false
+    });
+    converstion.push({
+      name: 'ChatOTK',
+      message: "",
+      loading: true
+    });
+    this._conversation.next(converstion);
+    return this.getResponse(message).then(response => {
+      converstion.pop();
+      converstion.push({
+        name: 'ChatOTK',
+        message: response.message,
+        loading: false
+      });
+    },
+    () => {
+      // Error
+      converstion.pop();
+      converstion.push({
+        name: 'ChatOTK',
+        message: '-ERROR-',
+        loading: false
+      });
+    })
+    .finally(() => this._conversation.next(converstion));
   }
 
   getNews(): Promise<any> {
@@ -16,6 +63,19 @@ export class BackendService {
       // TODO
       const url = '';
       resolve(firstValueFrom(this.http.get(url)));
+    });
+  }
+
+  getResponse(message: string): Promise<any> {
+    console.log('message', message);
+    return new Promise(resolve => {
+      return setTimeout(() => {
+        // TODO
+        const url = '';
+        // message
+        // resolve(firstValueFrom(this.http.get(url)));
+        resolve({message: 'Dunno, ask something else!'});
+      }, 3000);
     });
   }
 

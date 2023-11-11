@@ -1,31 +1,23 @@
-<!-- <div>
-  <c-chat-element
-    name="You"
-    message="Hello how is it going?">
-  </c-chat-element>
-    <c-chat-element
-      name="ChatOTK"
-      message="Not bad, you?">
-  </c-chat-element>
-</div> -->
+
 <div class="chat-input">
-  <cdk-virtual-scroll-viewport class="example-viewport col-12" itemSize="60">
-    <dl class="example-dl">
-      <ng-container *cdkVirtualFor="let state of items">
-        <dt class="example-dt">{{state.name}}</dt>
-        <dd class="example-dd">{{state.capital}}</dd>
+  <cdk-virtual-scroll-viewport #virtualScroll class="example-viewport col-12" itemSize="60">
+    <dl class="">
+      <ng-container *cdkVirtualFor="let item of items">
+        <dt class="name-dt list-item">{{item.name}}</dt>
+        <dd class="message-dd">{{item.message}}</dd>
+        <div *ngIf="item.loading" class="col-1">
+          <mat-progress-bar mode="buffer"></mat-progress-bar>
+        </div>
       </ng-container>
     </dl>
   </cdk-virtual-scroll-viewport>
-  <!-- <cdk-virtual-scroll-viewport itemSize="50" minBufferPx="200" maxBufferPx="400"
-                              class="example-viewport">
-    <div *cdkVirtualFor="let item of items" class="example-item">{{item}}</div>
-  </cdk-virtual-scroll-viewport> -->
-
-  <form>
     <mat-form-field class="chat-input">
-      <!-- <mat-label>Chat</mat-label> -->
-      <input matInput placeholder="Message ChatOTK...">
-    </mat-form-field>
-  </form>
+    <input
+      matInput
+      type="text"
+      placeholder="Message ChatOTK..."
+      [(ngModel)]="message"
+      (keydown.enter)="sendMessage()"
+      >
+  </mat-form-field>
 </div>
