@@ -8,7 +8,7 @@
         matInput
         type="text"
         [(ngModel)]="keyword"
-        (keydown.enter)="add(keywords, keyword)">
+        (keydown.enter)="addKeyword()">
     </mat-form-field>
     <mat-chip-list aria-label="Keyword selection">
       <mat-chip
@@ -37,7 +37,7 @@
           matInput
           type="text"
           [(ngModel)]="industry"
-          (keydown.enter)="add(industries, industry)">
+          (keydown.enter)="addIndustry()">
       </mat-form-field>
       <mat-chip-list aria-label="Industry Selection">
         <mat-chip
@@ -66,7 +66,7 @@
           matInput
           type="text"
           [(ngModel)]="source"
-          (keydown.enter)="add(sources, source)">
+          (keydown.enter)="addSource()">
       </mat-form-field>
       <mat-chip-list aria-label="News Source Selection">
         <mat-chip

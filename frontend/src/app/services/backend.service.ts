@@ -10,7 +10,7 @@ export type Conversation = {
 
 export type News = {
   source: string
-  header: string
+  headline: string
   summary: string
 }
 
@@ -102,14 +102,29 @@ export class BackendService {
       return setTimeout(() => {
         this._news.next([
           {
-            source: 'Helsingin Sanomat',
-            header: "Foreign-language speakers to account for almost 25% of Helsinki's population",
+            source: 'News Metal',
+            headline: "Despite recent recovery of digital electronic market, LCO makers hold gloomy market outlook for December",
             summary: "The share of foreign-language speakers of the population of Helsinki stood at 13.5 per cent at the beginning of this year, with Russian, Estonian, Somali and English speakers being the largest groups foreign-language speakers."
           },
           {
             source: 'Helsingin Sanomat',
-            header: "Foreign-language speakers to account for almost 25% of Helsinki's population",
+            headline: "Foreign-language speakers to account for almost 25% of Helsinki's population",
             summary: "Arabic, in particular, is projected to become a greater feature of the urban landscape. Helsinki will according to the forecast be home to as many as 32,000 people who speak Middle Eastern or Northern African languages – such as Arabic or Kurdish – as their mother tongue by 2030, representing a three-fold increase from the current situation."
+          },
+          {
+            source: 'News Metal',
+            headline: "Nickel sulphate prices plunge due to a simultaneous weakening of fundamentals and cost-side supports",
+            summary: ""
+          },
+          {
+            source: 'Routers',
+            headline: "Silicon metal prices continue to fall, but may stabilise cost support",
+            summary: ""
+          },
+          {
+            source: 'News Metal',
+            headline: "Rather Than Battling Against Layers Of Earth Thousands Of Meters Deep, Delving Deeper Into The Improvement Of Mining Techniques May Be One Of The Best Paths Towards Maximizing The Value Of Domestic Mining Resources In The Future",
+            summary: ""
           }
         ]);
         resolve();

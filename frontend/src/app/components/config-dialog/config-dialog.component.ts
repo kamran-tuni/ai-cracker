@@ -33,15 +33,6 @@ export class ConfigDialogComponent implements OnInit {
   }
 
   onSave(): void {
-    // "news_sources": [
-    //   "string"
-    // ],
-    // "keywords": [
-    //   "string"
-    // ],
-    // "industries": [
-    //   "string"
-    // ],
     this.backend.setConfiguration({
       news_sources: this.sources,
       keywords: this.keywords,
@@ -50,12 +41,30 @@ export class ConfigDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  add(list: string[], key: string): void {
-    if (list.length > 0) {
-      if (!list.includes(key)) {
-        list.push(key);
+  addKeyword(): void {
+    if (this.keywords.length > 0) {
+      if (!this.keywords.includes(this.keyword)) {
+        this.keywords.push(this.keyword);
       }
-      key = '';
+      this.keyword = '';
+    }
+  }
+
+  addIndustry(): void {
+    if (this.industries.length > 0) {
+      if (!this.industries.includes(this.industry)) {
+        this.industries.push(this.industry);
+      }
+      this.industry = '';
+    }
+  }
+
+  addSource(): void {
+    if (this.sources.length > 0) {
+      if (!this.sources.includes(this.source)) {
+        this.sources.push(this.source);
+      }
+      this.source = '';
     }
   }
 
