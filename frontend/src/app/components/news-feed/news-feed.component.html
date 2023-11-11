@@ -18,12 +18,12 @@
             <div class="col-3">
               <strong>Relevance: {{n.relevance_score}}/10</strong>
             </div>
-            <div class="col-6"></div>
-            <div class="col-3">
-              <strong [ngClass]="{
-                'positive' : n.sentiment_score > 0,
-                'negative' : n.sentiment_score < 0
-                }">Sentiment: {{n.sentiment_score}}</strong>
+            <div class="col-6">
+            </div>
+            <div class="col-3 align-self-center">
+              <div *ngIf="n.sentiment_score === 0">-</div>
+              <div *ngIf="n.sentiment_score > 0" class="arrow-up"></div>
+              <div *ngIf="n.sentiment_score < 0" class="arrow-down"></div>
             </div>
         </div>
       </mat-expansion-panel>
