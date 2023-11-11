@@ -4,8 +4,8 @@
   left: 10%;
 }
 
-.example-viewport {
-  height: 200px;
+.chat-viewport {
+  height: 500px; // TODO
   width: 100%;
   left: 10%;
 }
@@ -17,4 +17,16 @@
 
 .message-dd {
   height: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  overflow-y: scroll;
+  background: grey;
+  box-shadow: inset 0 0 4px #707070;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C2185B;
+  border-radius: 10px;
 }

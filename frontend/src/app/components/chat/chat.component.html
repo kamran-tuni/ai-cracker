@@ -1,6 +1,6 @@
 
 <div class="chat-input">
-  <cdk-virtual-scroll-viewport #virtualScroll class="example-viewport col-12" itemSize="60">
+  <cdk-virtual-scroll-viewport #virtualScroll class="chat-viewport col-12" itemSize="60">
     <dl class="">
       <ng-container *cdkVirtualFor="let item of items">
         <dt class="name-dt list-item">{{item.name}}</dt>
