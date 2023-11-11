@@ -72,27 +72,22 @@ export class BackendService {
     .finally(() => this._conversation.next(converstion));
   }
 
-  getNews(): Promise<any> {
+  private setNews(): Promise<any> {
     const url = 'http://5.22.219.30:8000/api/v1/data-points/';
-    // Access-Control-Allow-Origin
-    // firstValueFrom(this.http.get(url)).then((resp: any) => {
-    //   return {message: resp.response}
-    // },
-    // () => {
-    //   console.log('ERROR')
-    //   throw new Error();
-    // })
-
-    return new Promise(resolve => {
-      // TODO
-      const url = '';
-      resolve(firstValueFrom(this.http.get(url)));
-    });
+    return firstValueFrom(this.http.get(url)).then((resp: any) => {
+      console.log('resp', resp);
+      // this._news.next(resp); // TODO fix
+      this.setMockNews();
+      return Promise.resolve();
+    },
+    () => {
+      this.setMockNews();
+    })
   }
 
   getResponse(message: string): Promise<any> {
     const url = 'http://5.22.219.30:8000/api/v1/chat/';
-    firstValueFrom(this.http.post(url, {
+    return firstValueFrom(this.http.post(url, {
       message: message
     })).then((resp: any) => {
       return resp;
@@ -100,19 +95,11 @@ export class BackendService {
     () => {
       throw new Error();
     })
-
-    return new Promise(resolve => {
-      
-      resolve(firstValueFrom(this.http.post(url, {
-        message: message
-      })));
-      resolve({message: 'Dunno, ask something else!'});
-    });
   }
 
   setConfiguration(configuration: Configuration): Promise<void> {
-    this.startChat();
-    return this.setMockNews();
+    // TODO call configuration
+    return this.setNews();
   }
 
   private startChat(): void {
