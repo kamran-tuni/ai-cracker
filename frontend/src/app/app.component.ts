@@ -22,8 +22,7 @@ export class AppComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(ConfigDialogComponent, {
       disableClose: true,
-      width: '90%',
-      height: '50%',
+      width: '90%'
     });
 
     dialogRef.afterClosed().subscribe(result => {

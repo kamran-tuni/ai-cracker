@@ -1,98 +1,106 @@
 <h1 mat-dialog-title>Configure Your Feed</h1>
-<mat-stepper linear #stepper>
-  <mat-step [completed]="tabOneCompleted">
-    <ng-template matStepLabel>Select Keywords</ng-template>
-    <mat-form-field>
-      <mat-label>Select Keywords</mat-label>
-      <input
-        matInput
-        type="text"
-        [(ngModel)]="keyword"
-        (keydown.enter)="addKeyword()">
-    </mat-form-field>
-    <mat-chip-list aria-label="Keyword selection">
-      <mat-chip
-        *ngFor="let key of keywords"
-        color="primary"
-        (removed)="remove(keywords, key)">
-        {{key}}
-        <button matChipRemove>
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-chip>
-    </mat-chip-list>
-
-    <br>
-    <mat-divider></mat-divider>
-    <br>
-    <div mat-dialog-actions>
-      <button mat-raised-button matStepperNext color="primary" (click)="tabTwoCompleted = true;">Next</button>
-    </div>
-  </mat-step>
-  <mat-step [completed]="tabTwoCompleted">
-      <ng-template matStepLabel>Add Industries</ng-template>
-      <mat-form-field>
-        <mat-label>Add Industries</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="industry"
-          (keydown.enter)="addIndustry()">
-      </mat-form-field>
-      <mat-chip-list aria-label="Industry Selection">
-        <mat-chip
-          *ngFor="let key of industries"
-          color="primary"
-          (removed)="remove(industries, key)">
-          {{key}}
-          <button matChipRemove>
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </mat-chip>
-      </mat-chip-list>
-      <br>
-      <mat-divider></mat-divider>
-      <br>
-      <div mat-dialog-actions>
-        <button mat-raised-button matStepperPrevious color="secondary">Back</button>
-        <button mat-raised-button matStepperNext color="primary" (click)="tabTwoCompleted = true;">Next</button>
+<mat-dialog-content class="mat-typography">
+  <mat-stepper linear #stepper>
+    <mat-step [completed]="tabOneCompleted">
+      <div class="row align-items-center">
+        <div class="col-10">
+          <ng-template matStepLabel>Select Keywords</ng-template>
+          <mat-form-field>
+            <mat-label>Select Keywords</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="keyword"
+              (keydown.enter)="addKeyword()">
+          </mat-form-field>
+          <mat-chip-list aria-label="Keyword selection">
+            <mat-chip
+              *ngFor="let key of keywords"
+              color="primary"
+              (removed)="remove(keywords, key)">
+              {{key}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+        <div class="col-2">
+          <button mat-raised-button matStepperNext (click)="tabTwoCompleted = true;">Next</button>
+        </div>
       </div>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Add News Sources</ng-template>
-      <mat-form-field>
-        <mat-label>Add News Sources</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="source"
-          (keydown.enter)="addSource()">
-      </mat-form-field>
-      <mat-chip-list aria-label="News Source Selection">
-        <mat-chip
-          *ngFor="let key of sources"
-          color="primary"
-          (removed)="remove(sources, key)">
-          {{key}}
-          <button matChipRemove>
-            <mat-icon>cancel</mat-icon>
+    </mat-step>
+    <mat-step [completed]="tabTwoCompleted">
+      <div class="row align-items-center">
+        <div class="col-2">
+          <button mat-raised-button matStepperPrevious>Back</button>
+        </div>
+        <div class="col-8">
+          <ng-template matStepLabel>Add Industries</ng-template>
+          <mat-form-field>
+            <mat-label>Add Industries</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="industry"
+              (keydown.enter)="addIndustry()">
+          </mat-form-field>
+          <mat-chip-list aria-label="Industry Selection">
+            <mat-chip
+              *ngFor="let key of industries"
+              color="primary"
+              (removed)="remove(industries, key)">
+              {{key}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+        <div class="col-2">
+          <button mat-raised-button matStepperNext (click)="tabTwoCompleted = true; tabThreeCompleted = true;">Next</button>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Add News Sources</ng-template>
+      <div class="row align-items-center">
+        <div class="col-2">
+          <button mat-raised-button matStepperPrevious>
+            Back
           </button>
-        </mat-chip>
-      </mat-chip-list>
- 
-    <br>
-    <mat-divider></mat-divider>
-    <br>
-    <div mat-dialog-actions>
-      <button mat-raised-button matStepperPrevious
-        color="secondary">
-        Back
-      </button>
-      <button mat-raised-button
-        color="primary"
-        (click)="onSave()">
-        Save
-      </button>
-    </div>
-  </mat-step>
-</mat-stepper>
+        </div>
+        <div class="col-10">
+          <mat-form-field>
+            <mat-label>Add News Sources</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="source"
+              (keydown.enter)="addSource()">
+          </mat-form-field>
+          <mat-chip-list aria-label="News Source Selection">
+            <mat-chip
+              *ngFor="let key of sources"
+              color="primary"
+              (removed)="remove(sources, key)">
+              {{key}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="end">
+  <button mat-raised-button
+          color="primary"
+          [disabled]="!tabThreeCompleted"
+          (click)="onSave()">
+          Save
+        </button>
+</mat-dialog-actions>

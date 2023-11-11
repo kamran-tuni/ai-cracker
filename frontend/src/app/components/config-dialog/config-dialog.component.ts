@@ -11,6 +11,7 @@ import { Validators } from '@angular/forms';
 export class ConfigDialogComponent implements OnInit {
   tabOneCompleted = true;
   tabTwoCompleted = false;
+  tabThreeCompleted = false;
   
   keywords = ['aluminium'];
   keyword: string = '';
