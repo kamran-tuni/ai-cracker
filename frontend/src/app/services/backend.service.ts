@@ -75,9 +75,11 @@ export class BackendService {
   private setNews(): Promise<any> {
     const url = 'http://5.22.219.30:8000/api/v1/data-points/';
     return firstValueFrom(this.http.get(url)).then((resp: any) => {
-      console.log('resp', resp);
-      // this._news.next(resp); // TODO fix
-      this.setMockNews();
+      try {
+        this._news.next(resp.result);
+      } finally {
+        this.setMockNews();
+      }
       return Promise.resolve();
     },
     () => {
@@ -97,9 +99,12 @@ export class BackendService {
     })
   }
 
-  setConfiguration(configuration: Configuration): Promise<void> {
-    // TODO call configuration
-    return this.setNews();
+  setConfiguration(configuration: Configuration): Promise<any> {
+    this.startChat();
+    const url = 'http://5.22.219.30:8000/api/v1/config/';
+    return firstValueFrom(this.http.post(url, configuration)).finally(() => {
+      return this.setNews();
+    });
   }
 
   private startChat(): void {
@@ -118,7 +123,7 @@ export class BackendService {
           loading: false
         });
         this._conversation.next(conversation);
-      }, 1500);
+      }, 1000);
     });
   }
 
@@ -153,7 +158,7 @@ export class BackendService {
           }
         ]);
         resolve();
-      }, 3000); // delay for mocking
+      }, 0);
     });
   }
 
