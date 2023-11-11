@@ -19,5 +19,7 @@ class DataPoint(Base):
     id = Column(Integer, primary_key=True, index=True)
     article_id = Column(Integer, index=True)
     heading = Column(String)
+    summary = Column(String)
     most_relevant_keyword = Column(String)
-    score = Column(Float)
+    relevance_score = Column(Integer)
+    sentiment_score = Column(Float)

@@ -7,3 +7,4 @@ load_dotenv()
 
 class Config:
     DATABASE_URL = "sqlite:///./sqlite.db"
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
