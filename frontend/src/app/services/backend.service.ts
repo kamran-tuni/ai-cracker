@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, filter, firstValueFrom, Observable, of, Subject, tap } from 'rxjs';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
 
 export type Conversation = {
   name: string
@@ -56,7 +56,7 @@ export class BackendService {
       converstion.pop();
       converstion.push({
         name: 'ChatOTK',
-        message: response.message,
+        message: response.response,
         loading: false
       });
     },
@@ -73,6 +73,16 @@ export class BackendService {
   }
 
   getNews(): Promise<any> {
+    const url = 'http://5.22.219.30:8000/api/v1/data-points/';
+    // Access-Control-Allow-Origin
+    // firstValueFrom(this.http.get(url)).then((resp: any) => {
+    //   return {message: resp.response}
+    // },
+    // () => {
+    //   console.log('ERROR')
+    //   throw new Error();
+    // })
+
     return new Promise(resolve => {
       // TODO
       const url = '';
@@ -81,15 +91,22 @@ export class BackendService {
   }
 
   getResponse(message: string): Promise<any> {
-    console.log('message', message);
+    const url = 'http://5.22.219.30:8000/api/v1/chat/';
+    firstValueFrom(this.http.post(url, {
+      message: message
+    })).then((resp: any) => {
+      return resp;
+    },
+    () => {
+      throw new Error();
+    })
+
     return new Promise(resolve => {
-      return setTimeout(() => {
-        // TODO
-        const url = '';
-        // message
-        // resolve(firstValueFrom(this.http.get(url)));
-        resolve({message: 'Dunno, ask something else!'});
-      }, 3000);
+      
+      resolve(firstValueFrom(this.http.post(url, {
+        message: message
+      })));
+      resolve({message: 'Dunno, ask something else!'});
     });
   }
 

@@ -26,7 +26,6 @@ export class ChatComponent implements OnInit {
   }
 
   public sendMessage(): void {
-    console.log('hep');
     this.backend.sendMessage(this.message);
     this.message = '';
   }
