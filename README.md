@@ -4,4 +4,4 @@ This tool utilizes generative Artificial Intelligence in a sustainable manner to
 
 [Backend readme file](./backend/README.md)
 
-[Frontend readme file](./backend/README.md)
+[Frontend readme file](./frontend/README.md)
