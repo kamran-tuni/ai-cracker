@@ -6,20 +6,16 @@ import { BackendService } from '../../services/backend.service';
   templateUrl: './news-feed.component.html',
   styleUrls: ['./news-feed.component.less']
 })
-export class NewsFeedComponent implements OnInit {
+export class NewsFeedComponent {
   loading = true;
   news: any[] = [];
 
   constructor(private backend: BackendService) {
-    //
-  }
-
-  ngOnInit(): void {
-    this.loading = true;
-    this.backend.getMockNews().then((data) => {
-      this.news = data.news;
-      this.loading = false;
+    this.backend.news$.subscribe(news => {
+      this.news = [...news];
+      if (this.news.length > 0) {
+        this.loading = false;
+      }
     });
   }
-
 }

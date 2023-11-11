@@ -8,12 +8,20 @@ export type Conversation = {
   loading: boolean
 }
 
+export type News = {
+  source: string
+  header: string
+  summary: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class BackendService {
   private _conversation = new BehaviorSubject<Conversation[]>([]);
   public readonly conversation$ = this._conversation.asObservable();
+  private _news = new BehaviorSubject<News[]>([]);
+  public readonly news$ = this._news.asObservable();
 
   constructor(private http: HttpClient) {
     //
@@ -79,23 +87,22 @@ export class BackendService {
     });
   }
 
-  getMockNews(): Promise<any> {
+  setMockNews(): Promise<void> {
     return new Promise(resolve => {
       return setTimeout(() => {
-        resolve({
-          news: [
-            {
-              source: 'Helsingin Sanomat',
-              header: "Foreign-language speakers to account for almost 25% of Helsinki's population",
-              summary: "The share of foreign-language speakers of the population of Helsinki stood at 13.5 per cent at the beginning of this year, with Russian, Estonian, Somali and English speakers being the largest groups foreign-language speakers."
-            },
-            {
-              source: 'Helsingin Sanomat',
-              header: "Foreign-language speakers to account for almost 25% of Helsinki's population",
-              summary: "Arabic, in particular, is projected to become a greater feature of the urban landscape. Helsinki will according to the forecast be home to as many as 32,000 people who speak Middle Eastern or Northern African languages – such as Arabic or Kurdish – as their mother tongue by 2030, representing a three-fold increase from the current situation."
-            }
-          ]
-        });
+        this._news.next([
+          {
+            source: 'Helsingin Sanomat',
+            header: "Foreign-language speakers to account for almost 25% of Helsinki's population",
+            summary: "The share of foreign-language speakers of the population of Helsinki stood at 13.5 per cent at the beginning of this year, with Russian, Estonian, Somali and English speakers being the largest groups foreign-language speakers."
+          },
+          {
+            source: 'Helsingin Sanomat',
+            header: "Foreign-language speakers to account for almost 25% of Helsinki's population",
+            summary: "Arabic, in particular, is projected to become a greater feature of the urban landscape. Helsinki will according to the forecast be home to as many as 32,000 people who speak Middle Eastern or Northern African languages – such as Arabic or Kurdish – as their mother tongue by 2030, representing a three-fold increase from the current situation."
+          }
+        ]);
+        resolve();
       }, 3000); // delay for mocking
     });
   }

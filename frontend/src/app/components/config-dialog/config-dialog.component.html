@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Configure Your Feed</h1>
+  <mat-form-field class="example-chip-list">
+    <mat-label>Select Keywords</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="keyword"
+      (keydown.enter)="addKeyword()">
+  </mat-form-field>
+  <mat-chip-list aria-label="Fish selection">
+    <mat-chip
+      *ngFor="let key of keywords"
+      color="primary"
+      (removed)="remove(key)">
+      {{key}}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+  </mat-chip-list>
+<br>
+<mat-divider></mat-divider>
+<br>
+<div mat-dialog-actions>
+  <!-- <button mat-button (click)="onSave()">No Thanks</button> -->
+  <button mat-raised-button color="primary" (click)="onSave()">Save</button>
+</div>
