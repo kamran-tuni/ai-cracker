@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+// Define your custom primary color
+// $custom-primary: mat-palette($mat-blue);
+$primary: mat-palette($mat-orange, 800);
+$accent: mat-palette($mat-orange, 600);
+// $custom-primary: #FF6A0E;
+
+$theme: mat-dark-theme($primary, $accent); // pink-bluegrey
+
+// Include the Angular Material pre-built theme
+// @include angular-material-theme($custom-primary);
+@include angular-material-theme($theme);
